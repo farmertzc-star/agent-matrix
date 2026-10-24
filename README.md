@@ -1,52 +1,52 @@
 # agent-matrix
 
-[English](README.en.md) · [采用指南](docs/ADOPTION.md) · [完整示例](docs/EXAMPLE.md) · [MIT](LICENSE)
+[Chinese guide](docs/ADOPTION.md) · [Adoption guide](docs/ADOPTION.md) · [Worked example](docs/EXAMPLE.md) · [MIT](LICENSE)
 
-**让多 Agent 协作成为需求清楚、设计统一、质量可验证的研发闭环。**
+**A lightweight engineering loop for clear requirements, consistent contracts, and verifiable multi-agent delivery.**
 
-agent-matrix 是轻量、技术栈中立的工程方法包：用少量 Markdown 事实源、稳定契约和审核门禁，减少 Agent 猜需求、改错接口、覆盖成果或“代码写完就算完成”的问题。
+agent-matrix is a stack-neutral method package. A small set of Markdown sources, explicit contracts, and review gates help prevent guessed requirements, incompatible interfaces, overwritten work, and premature claims of completion.
 
-面向开发者、技术负责人和开源维护者。可由一个人或多个 Agent 采用，不要求购买指定模型、安装编排平台或重组业务目录。
+For developers, technical leads, and open-source maintainers. Use it alone or with several agents, without a required model vendor, orchestration platform, or application directory layout.
 
-## 核心闭环
+## The loop
 
 ```mermaid
 flowchart LR
-    PRD[需求 PRD] --> DESIGN[设计 DESIGN]
-    DESIGN --> TASKS[任务 TASKS]
-    TASKS --> CODE[实现与测试]
-    CODE --> REVIEW[审核 REVIEW]
-    REVIEW --> DONE[验收 DONE]
+    PRD[Requirements PRD] --> DESIGN[Design]
+    DESIGN --> TASKS[Tasks]
+    TASKS --> CODE[Code and tests]
+    CODE --> REVIEW[Review]
+    REVIEW --> DONE[Accepted DONE]
 ```
 
-- **需求与契约先行**：CONFIRMED / INFERRED / TODO_CONFIRM 区分依据；Task 绑定需求、设计、文件与验证。
-- **协作与上下文受控**：按需加载、单写入、明确认领和交接；优先复用已有体系，不创建平行进度源。
-- **完成必须有证据**：真实测试、多轮追加审核、P0/P1 熔断，满足验收后才能 DONE。
+- **Requirements and contracts first:** separate CONFIRMED, INFERRED, and TODO_CONFIRM; bind tasks to requirements, designs, files, and verification.
+- **Controlled collaboration:** load relevant context, assign one writer, and record handoffs. Reuse existing project sources instead of creating parallel trackers.
+- **Evidence before completion:** real tests, appended review history, and a hard unresolved P0/P1 gate before DONE.
 
-## 一分钟开始
+## Start in one minute
 
-1. 在 [采用指南](docs/ADOPTION.md#接入步骤)确认接入方式，复制其中的完整“初始化 Prompt”到你的项目 Agent。
-2. 让 Agent 先检查 Git、现有规则和真实代码，再增量建立或复用事实源。已有修改和业务结构必须保留。
-3. 审阅初始化报告并确认待定问题，再下达“执行 TASK-xxx”或一个范围明确的 Goal。初始化本身不会开发或提交代码。
+1. Open the [adoption guide](docs/ADOPTION.md#接入步骤) and copy its complete initialization prompt into an agent working in your project.
+2. Have the agent inspect Git, existing rules, documentation, and real code before incrementally adding or mapping the sources. Preserve existing work and application structure.
+3. Review the initialization report, resolve decisions, then request a specific task or a scoped goal. Initialization itself does not implement features or commit changes.
 
-**不要把本仓库的 PRD/TASKS 直接复制成你项目的需求与进度。** 它们是 agent-matrix 自己的维护实例；采用指南里的模板才是供外部填充的空白契约。
+**Do not copy this repository's PRD and task history as your project's own requirements or progress.** They maintain agent-matrix itself. The adoption guide provides the blank contracts to adapt. Detailed guides and templates are currently in Chinese; this English entry describes the same workflow, commands, and limits.
 
-## 交付物导航
+## Assets
 
-| 资产 | 用途 |
+| Asset | Purpose |
 | --- | --- |
-| [采用指南与模板](docs/ADOPTION.md) | 完整初始化 Prompt、AGENTS/PRD/DESIGN/TASKS 模板、增量接入与演进 |
-| [完整示例](docs/EXAMPLE.md) | EX- 需求 → 设计 → 任务 → 可执行红绿灯测试 → 示意审核与完成 |
-| [统一 Agent 规则](AGENTS.md) | 本仓库维护规则；按需加载、十条铁律与认领协议的有效实例 |
-| [PRD](docs/PRD.md) / [DESIGN](docs/DESIGN.md) / [TASKS](docs/TASKS.md) | 本仓库唯一需求、设计与任务事实源 |
-| [审核规范](docs/reviews/README.md) | 单任务单主报告、多轮追加、严重度及完成门禁 |
-| [贡献指南](CONTRIBUTING.md) | 变更、检查与精确提交准备 |
+| [Adoption guide and templates](docs/ADOPTION.md) | Complete initialization prompt, AGENTS/PRD/DESIGN/TASKS contracts, incremental adoption and evolution |
+| [Worked example](docs/EXAMPLE.md) | EX- requirement, design, task, executable red/green checks, and clearly illustrative review |
+| [Agent rules](AGENTS.md) | The effective rules for maintaining this repository, including context loading and ownership |
+| [PRD](docs/PRD.md) / [DESIGN](docs/DESIGN.md) / [TASKS](docs/TASKS.md) | This repository's single sources of requirements, designs, and task progress |
+| [Review rules](docs/reviews/README.md) | One main report per task, append-only history, severity and completion gates |
+| [Contributing](CONTRIBUTING.md) | Change process, verification, and explicit staging scope |
 
-最小目标项目只需根 AGENTS、三个文档事实源和 reviews；已有等价体系直接映射。Java/Spring、Python、Node.js/全栈、CLI/库或纯文档项目都按真实结构适配，不强制 Controller/Service 或某个包管理器。
+A target project normally needs AGENTS, three document sources, and reviews. Map existing equivalents instead of replacing them. Java/Spring, Python, Node.js/full-stack, CLI/library, and documentation projects use their actual structure; no Controller/Service layering or package manager is prescribed.
 
-## 验证本仓库
+## Verify this repository
 
-获取仓库后，在根目录使用 Python 3.9+；单测和提交检查另需 Git CLI，无第三方依赖或服务。
+From the repository root, use Python 3.9+. Tests and staged checks also require the Git CLI. No third-party packages or services are required.
 
 ```sh
 python3 -m unittest discover -s tests -v
@@ -55,14 +55,14 @@ python3 scripts/check_docs.py --example-red
 python3 scripts/check_docs.py --example
 ```
 
-准备提交后再运行 `python3 scripts/check_docs.py --staged`，检查的是真实暂存内容及其与工作区的一致性。命令不会替你暂存、提交或推送。
+After explicitly staging your changes, run `python3 scripts/check_docs.py --staged` to check the actual index and its agreement with the workspace. These commands never stage, commit, or push for you.
 
-红灯命令只有在测试发现有意缺陷时成功；绿灯要求 14 个边界/类型案例全部通过。工具覆盖本地链接/锚点、追踪关系、统计/依赖、完成证据、许可和提交卫生；外部项目复用检查器时须适配自己的事实源格式与发布清单。
+The red command succeeds only when tests detect the intentional defect. The green command requires all 14 boundary/type cases to pass. The checker covers local links/anchors, traceability, statistics/dependencies, completion evidence, licensing, and release hygiene. Adapt its schema and release allowlist before reusing it in another project.
 
-## 适用边界
+## Scope and limits
 
-本版交付生产导向的工程规范与本地验证，不提供自动 Agent 调度、分布式锁或云部署服务；不声称已在所有技术栈生产验证。人工协调不是原子互斥，静态检查也不能代替需求、安全和生产环境审核。
+This release provides production-oriented engineering conventions and local verification. It does not ship an automatic scheduler, distributed lock service, or cloud deployment platform, and does not claim production validation across all stacks. Manual coordination is not atomic mutual exclusion; static checks do not replace requirements, security, or production review.
 
-Codex、Claude、Hermes、Gemini 的角色只是能力分工建议，可以替换；作者自检和真实独立审核必须区分。初始化历史记录保留作审计，不是安装指南或额外进度源。
+Codex, Claude, Hermes, and Gemini roles are replaceable capability suggestions. Distinguish author self-review from real independent review. Historical initialization records are audit material, not installation steps or another progress source.
 
-欢迎按 [贡献流程](CONTRIBUTING.md)提出问题和改进。许可为 [MIT](LICENSE)，版权署名 agent-matrix contributors。
+Contributions follow the [contribution guide](CONTRIBUTING.md). Licensed under [MIT](LICENSE), attributed to agent-matrix contributors.

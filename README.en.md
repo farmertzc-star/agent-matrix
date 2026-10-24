@@ -1,6 +1,6 @@
 # agent-matrix
 
-[中文](README.md) · [Adoption guide](docs/ADOPTION.md) · [Worked example](docs/EXAMPLE.md) · [MIT](LICENSE)
+[Chinese guide](docs/ADOPTION.md) · [Adoption guide](docs/ADOPTION.md) · [Worked example](docs/EXAMPLE.md) · [MIT](LICENSE)
 
 **A lightweight engineering loop for clear requirements, consistent contracts, and verifiable multi-agent delivery.**
 
